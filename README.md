@@ -2,10 +2,10 @@
 
 ## Overview
 
-This repository presents selected industrial-grade data science projects focused on scalable modeling, analytics automation, and decision-support systems.
+This repository presents selected data science projects focused on scalable modeling, analytics automation, and decision-support systems.
 
 All production codebases are private due to corporate restrictions.  
-This portfolio describes architecture, modeling approaches, and technical solutions.
+This portfolio outlines architecture, modeling approaches, and technical solutions implemented in production environments.
 
 ---
 
@@ -25,20 +25,20 @@ Estimate commercial potential of store locations using geospatial and gravity-ba
 - H3 hex-based demand estimation
 - Competitor density modeling
 - Customer flow redistribution using gravity logic
-- Feature dataset for ML-ready scoring
+- Feature dataset prepared for scoring and comparative analysis
 
 **Scale**
 City-level modeling with thousands of hex cells and competitor objects.
 
 **Impact**
-Enabled data-driven comparison of store locations before investment decisions.
+Enabled structured comparison of store locations prior to investment decisions.
 
 ---
 
 ## 📊 2. Store-Level Daily Sales Forecasting
 
 **Objective**  
-Build a scalable forecasting pipeline for daily store sales.
+Build a forecasting pipeline for daily store sales.
 
 **Tech Stack**
 - Python
@@ -52,10 +52,10 @@ Holidays as exogenous variables
 Analog-store substitution for sparse data
 
 **Pipeline**
-Data → Cleaning → Feature engineering → Model → Accuracy validation → BI export
+Data ingestion → Cleaning → Feature engineering → Model training → Accuracy validation → BI export
 
 **Impact**
-Automated forecasting for operational planning and financial control.
+Established automated forecasting workflow supporting operational planning and financial monitoring.
 
 ---
 
@@ -75,7 +75,7 @@ Reduce subjectivity in hiring decisions.
 Video interview → Transcription → Competency extraction → Structured scoring → Summary generation
 
 **Impact**
-Standardized evaluation process with consistent competency scoring.
+Standardized evaluation process with consistent competency-based scoring logic.
 
 ---
 
@@ -93,17 +93,20 @@ Automate explanation of KPI deviations inside BI dashboards.
 **Approach**
 - KPI deviation detection
 - Business rule triggers
-- LLM-generated natural language explanations
+- LLM-generated natural language explanations integrated into dashboards
+  
+**Pipeline**
+SQL extracts (joins/filters) → Python ETL (dedup/trim) → KPI pre-calculation → compression/encoding for token reduction → prompt assembly → LLM call (rate-limit handling / API key rotation) → JSON insights → BI integration
 
 **Impact**
-Reduced manual analytical workload and accelerated managerial decision-making.
+Reduced manual analytical workload and improved turnaround time for managerial review.
 
 ---
 
 ## 🛒 5. Product Complementarity & Similarity Model
 
 **Objective**  
-Identify complementary and substitute products from large-scale transaction data.
+Identify complementary and substitute products using large-scale transaction data.
 
 **Tech Stack**
 - Python 3.9
@@ -117,14 +120,14 @@ Identify complementary and substitute products from large-scale transaction data
 - Sparse matrix A (Product × Basket)
 - Complementarity matrix via normalized co-purchase structure
 - Cosine similarity in complementarity space
-- Statistical + business filtering
+- Statistical and business-rule filtering
 
 **Scale**
 Tens of millions of transaction rows  
-Multi-GB files processed without memory overflow
+Multi-GB files processed with memory-aware architecture
 
 **Key Engineering Shift**
-Replaced dense O(n²) computations with sparse-matrix architecture optimized for retail-scale datasets.
+Transitioned from dense O(n²) computations to sparse-matrix architecture optimized for retail-scale datasets.
 
 ---
 
@@ -142,38 +145,102 @@ Evaluate event-based trading strategies using multi-timeframe context.
 - 4H + Daily timeframe integration
 - EMA, RSI, MACD, ATR filters
 - Event-driven signal logic
-- Strategy funnel logging
+- Strategy-level logging
 
 **Evaluation**
-Win rate  
-Yearly return distribution  
-Time-in-market  
-Risk diagnostics
-
+- Win rate  
+- Yearly return distribution  
+- Time-in-market  
+- Risk diagnostics
+- Funnel by events 
 ---
 
 ## Technical Challenges & Engineering Solutions
 
-### Memory Constraints
-Solved via sparse matrix representation + chunk-based Dask processing.
+### 🗺 Geo Store Potential Model
 
-### O(n²) Similarity Explosion
-Reduced using sparse multiplication + threshold filtering.
+**Challenge: Heavy geospatial computations & API limits**  
+Large map areas, competitor density modeling, and external API requests (OSM / Overpass) caused performance bottlenecks.
 
-### Sparse Historical Data
-Implemented analog-based surrogate modeling.
+**Solutions:**
+- Spatial partitioning using H3 hex grid
+- Radius-based query restriction instead of full-area scans
+- Request batching & API throttling
+- Local caching of geodata
+- Incremental recomputation instead of full rebuild
 
-### Subjective Decision Bottlenecks
-Structured LLM-based JSON scoring systems.
+**Result:**  
+Significant reduction in API calls and computation time while preserving model accuracy.
+
+---
+
+### 🛒 Product Complementarity & Similarity Model
+
+**Challenge: Memory overflow due to dense O(n²) computations**  
+Pairwise similarity across thousands of SKUs and millions of transactions exceeded RAM capacity.
+
+**Solutions:**
+- Sparse matrix representation (COO → CSR)
+- Chunk-based processing with Dask
+- Cosine similarity in complementarity space
+- Threshold filtering to reduce candidate pairs
+
+**Result:**  
+Multi-GB transaction datasets processed efficiently without memory overflow.
+
+---
+
+### 📊 Store-Level Forecasting
+
+**Challenge: Sparse historical data for new or low-activity stores**
+
+**Solutions:**
+- Analog-store matching by region/format
+- Surrogate modeling
+- Automated validation pipeline
+
+**Result:**  
+Stable forecasting coverage across heterogeneous store portfolio.
+
+---
+
+### 📈 KPI Insight Automation (LLM-Enhanced)
+
+**Challenge: Large context size & API cost control**
+
+**Solutions:**
+- SQL-side aggregation & KPI pre-calculation
+- Python preprocessing (deduplication, trimming irrelevant fields)
+- Token-efficient encoding before prompt assembly
+- Multi-key rotation & rate-limit handling
+- Structured JSON output for BI integration
+
+**Result:**  
+Cost-efficient, scalable AI insight layer embedded into BI dashboards.
+
+---
+
+### 🤖 Interview Evaluation
+
+**Challenge: Unstructured video input & inconsistent scoring**
+
+**Solutions:**
+- Video → audio extraction
+- Speech-to-text transcription pipeline
+- Structured competency schema
+- JSON-based standardized evaluation
+
+**Result:**  
+Consistent and reproducible candidate assessment workflow.
 
 ---
 
 ## Positioning
 
-This portfolio reflects production-oriented data science focused on:
+This portfolio reflects applied data science work focused on:
 
 - Scalable computation
 - Memory-aware modeling
-- Hybrid rule-based + ML systems
-- End-to-end pipeline engineering
+- Hybrid rule-based and statistical systems
+- End-to-end pipeline implementation
 - Business-integrated analytics
