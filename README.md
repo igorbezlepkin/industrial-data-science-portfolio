@@ -8,9 +8,17 @@ All production codebases are private due to corporate restrictions.
 This portfolio outlines architecture, modeling approaches, and technical solutions implemented in production environments.
 
 ---
+## Table of Contents
+- [1. Geo Store Potential Model](#geo-store-potential-model)
+- [2. Store-Level Daily Sales Forecasting](#store-level-daily-sales-forecasting)
+- [3. AI-Assisted Interview Evaluation](#ai-assisted-interview-evaluation)
+- [4. KPI Insight Automation (LLM-enhanced)](#kpi-insight-automation-llm-enhanced)
+- [5. Product Complementarity & Similarity Model](#product-complementarity-similarity-model)
+- [6. Multi-Timeframe Quant Model](#multi-timeframe-quant-model)
+- [Technical Challenges & Engineering Solutions](#technical-challenges-engineering-solutions)
 
+<a id="geo-store-potential-model"></a>
 ## 🗺 1. Geo Store Potential Model
-
 **Objective**  
 Estimate commercial potential of store locations using geospatial and gravity-based modeling.
 
@@ -34,7 +42,7 @@ City-level modeling with thousands of hex cells and competitor objects.
 Enabled structured comparison of store locations prior to investment decisions.
 
 ---
-
+<a id="store-level-daily-sales-forecasting"></a>
 ## 📊 2. Store-Level Daily Sales Forecasting
 
 **Objective**  
@@ -58,7 +66,7 @@ Data ingestion → Cleaning → Feature engineering → Model training → Accur
 Established automated forecasting workflow supporting operational planning and financial monitoring.
 
 ---
-
+<a id="ai-assisted-interview-evaluation"></a>
 ## 🤖 3. AI-Assisted Interview Evaluation
 
 **Objective**  
@@ -78,7 +86,7 @@ Video interview → Transcription → Competency extraction → Structured scori
 Standardized evaluation process with consistent competency-based scoring logic.
 
 ---
-
+<a id="kpi-insight-automation-llm-enhanced"></a>
 ## 📈 4. KPI Insight Automation (LLM-enhanced)
 
 **Objective**  
@@ -102,7 +110,7 @@ SQL extracts (joins/filters) → Python ETL (dedup/trim) → KPI pre-calculation
 Reduced manual analytical workload and improved turnaround time for managerial review.
 
 ---
-
+<a id="product-complementarity-similarity-model"></a>
 ## 🛒 5. Product Complementarity & Similarity Model
 
 **Objective**  
@@ -130,7 +138,7 @@ Multi-GB files processed with memory-aware architecture
 Transitioned from dense O(n²) computations to sparse-matrix architecture optimized for retail-scale datasets.
 
 ---
-
+<a id="multi-timeframe-quant-model"></a>
 ## 📉 6. Multi-Timeframe Quant Model
 
 **Objective**  
@@ -154,7 +162,7 @@ Evaluate event-based trading strategies using multi-timeframe context.
 - Risk diagnostics
 - Funnel by events 
 ---
-
+<a id="technical-challenges-engineering-solutions"></a>
 ## Technical Challenges & Engineering Solutions
 
 ### 🗺 Geo Store Potential Model
