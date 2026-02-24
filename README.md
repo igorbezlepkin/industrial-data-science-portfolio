@@ -49,21 +49,23 @@ Enabled structured comparison of store locations prior to investment decisions.
 Build a forecasting pipeline for daily store sales.
 
 **Tech Stack**
-- Python
-- pandas
-- statsmodels (SARIMAX)
+- Python 3.9
+- pandas, NumPy
+- scikit-learn (RandomForestRegressor)
+- SQL (data extraction / feature tables)
+- Power BI (export / reporting)
 - SQL
 
-**Model**
-SARIMAX (1,1,1)x(1,1,1,12)  
-Holidays as exogenous variables  
-Analog-store substitution for sparse data
+**Approach**
+- Supervised ML forecasting with RandomForestRegressor
+- Calendar-based feature engineering (week/day/seasonality flags, holidays)
+- Handling sparse stores via analog-store features / fallback logic
+- Automated validation (train/test splits, accuracy metrics) and export pipeline
 
-**Pipeline**
-Data ingestion → Cleaning → Feature engineering → Model training → Accuracy validation → BI export
-
-**Impact**
-Established automated forecasting workflow supporting operational planning and financial monitoring.
+**Output**
+- Daily forecasts per store and product category
+- Model artifacts saved for reuse
+- BI-ready dataset for monitoring forecast vs actual
 
 ---
 <a id="ai-assisted-interview-evaluation"></a>
