@@ -50,11 +50,10 @@ Build a forecasting pipeline for daily store sales.
 
 **Tech Stack**
 - Python 3.9
-- pandas, NumPy
+- pandas, NumPy, 
 - scikit-learn (RandomForestRegressor)
-- SQL (data extraction / feature tables)
+- pyodbc / SQL (data extraction / feature tables)
 - Power BI (export / reporting)
-- SQL
 
 **Approach**
 - Supervised ML forecasting with RandomForestRegressor
